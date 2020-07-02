@@ -1,6 +1,6 @@
 /**
  * Survey viewer - visualisation for data correlation
- * author: Martin Nechvatal martin.nechvatal@gmail.com
+ * author: Martin Nechvatal martin.nech@gmail.com
  */
 
 // Survey data stored in 2 global variables: questions, answers
