@@ -3,6 +3,8 @@ Starter kit for google forms survey viewer with 1-5 question rendering, classifi
 
 1. Export google forms survey results as csv.
 2. Convert csv with survey results into json.
+  - recommend use of https://csvjson.com/csv2json
+  - replace questions on first line with shorter key and the map full questions to those keys in file questions.js
 3. Create "keys" to bind questions and results.
 4. Setup data/config.js
   - change title to reflect your survey name
