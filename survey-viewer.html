@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Survey results viewer</title>
+
+  <link rel="stylesheet" href="sv.css">
+
+  <script src="data/questions.js"></script>
+  <script src="data/answers.js"></script>
+  <script src="data/config.js"></script>
+  <script src="survey-viewer.js"></script>
+  </head>
+
+  <body>
+    <h2 id="survey_title"></h2>
+    <button id="export_class_config" title="Exports current local storage classification configuration">Export Classification configuration</button>
+    <label class="ctrl" for="editmode">Enable classification editing:</label>
+    <input class="ctrl" type="checkbox" id="editmode">
+    <div id="interactive">
+      <div id="control-panel">
+        <label for="highlighter">Colorize answers based on other questions:</label>
+        <select id="highlighter">
+          <option selected value="">no coloring</option>
+          <!-- Other options added programatcally based on config.js color_highlighter array -->
+        </select>
+        <hr>
+        <span class="legend15">
+          <span class="l15_1"></span>1&nbsp;
+          <span class="l15_2"></span>2&nbsp;
+          <span class="l15_3"></span>3&nbsp;
+          <span class="l15_4"></span>4&nbsp;
+          <span class="l15_5"></span>5
+        </span>
+        <hr>
+      </div>
+      <div id="interactive_render"></div>
+    </div>
+    <div id="detail-raw"></div>
+  </body>
+</html>
