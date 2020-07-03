@@ -321,6 +321,9 @@ function containsValuableText(text) {
 // Classification functions - generating classification data
 // Loaded and stored in localStorage
 function add_cls_group(group, question) {
+    if (!classifier_config[question]) {
+        classifier_config[question] = {};
+    }
     if (classifier_config[question][group]) {
         alert("Group already exists.");
     } else {
