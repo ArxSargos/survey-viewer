@@ -1,6 +1,6 @@
 /**
  * Survey viewer - visualisation for data correlation
- * author: Martin Nechvatal martin.nech@gmail.com
+ * author: Martin Nechvatal martin.nechvatal@gmail.com
  */
 
 // Survey data stored in 2 global variables: questions, answers
@@ -150,12 +150,12 @@ function render_marker(answer, ref, inner_text, unclassify_opt, question) {
 
     const search_text = inner_text ? inner_text : "";
     // Replace cutout indicators with hover title to proper text reference •••
-    const matched = search_text.match(/###/g);
+    const matched = search_text.match(/(###[0-9]*)/g);
 
     if (matched) {
         let innerHTML = inner_text;
         for (let i =0; i < matched.length; i++) {
-            innerHTML = innerHTML.replace("###", "<span title='" + answers_references[ref][question][i] + "'>•••</span>");
+            innerHTML = innerHTML.replace(matched[i], "<span title='" + answers_references[ref][question][matched[i]] + "'>•••</span>");
         }
         square.innerHTML = innerHTML;
     } else {
@@ -244,6 +244,7 @@ function build_classifier(question) {
 
         // Parse users answers and split it to classified parts
         let count = 0;
+        let uidref = 0;
         for(let ansIndex = 0; ansIndex < answers_residuals.length; ansIndex++) {
                 let answer_text = answers_residuals[ansIndex][question];
                 answer_text = answer_text.replace(/(\r\n|\n|\r)/gm, " ");
@@ -254,7 +255,7 @@ function build_classifier(question) {
                         const marker = render_marker(answers[ansIndex], ansIndex, class_item, true, question); // passing unclassify = true
                         
                         class_column.appendChild(marker);
-                        answer_text = answer_text.replace(class_item, "###");
+                        answer_text = answer_text.replace(class_item, "###"+uidref);
                         count++;
 
                         // save reference to replaced text
@@ -264,7 +265,8 @@ function build_classifier(question) {
                         answers_references[ansIndex][question]
                             ? answers_references[ansIndex][question] = answers_references[ansIndex][question]
                             : answers_references[ansIndex][question] = [];
-                        answers_references[ansIndex][question].push(class_item);
+                        answers_references[ansIndex][question]["###" + uidref] = class_item;
+                        uidref++;
                     }
                 }
 
